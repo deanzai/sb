@@ -3639,8 +3639,8 @@ vps_ipv4="当前IP：$v4"
 vps_ipv6='无本地IPV6，黑名单模式'
 fi
 unset swg4 swd4 swd6 swg6 ssd4 ssg4 ssd6 ssg6 sad4 sag4 sad6 sag6
-wd4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[1].domain_suffix | join(" ")')
-wg4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[1].geosite | join(" ")' 2>/dev/null)
+wd4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[1].domain_suffix // []) | join(" ")' 2>/dev/null)
+wg4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[1].geosite // []) | join(" ")' 2>/dev/null)
 if [[ "$wd4" == "yg_kkk" && ("$wg4" == "yg_kkk" || -z "$wg4") ]]; then
 wfl4="${yellow}【warp出站IPV4可用】未分流${plain}"
 else
@@ -3653,8 +3653,8 @@ fi
 wfl4="${yellow}【warp出站IPV4可用】已分流：$swd4$swg4${plain} "
 fi
 
-wd6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[2].domain_suffix | join(" ")')
-wg6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[2].geosite | join(" ")' 2>/dev/null)
+wd6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[2].domain_suffix // []) | join(" ")' 2>/dev/null)
+wg6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[2].geosite // []) | join(" ")' 2>/dev/null)
 if [[ "$wd6" == "yg_kkk" && ("$wg6" == "yg_kkk"|| -z "$wg6") ]]; then
 wfl6="${yellow}【warp出站IPV6自测】未分流${plain}"
 else
@@ -3667,8 +3667,8 @@ fi
 wfl6="${yellow}【warp出站IPV6自测】已分流：$swd6$swg6${plain} "
 fi
 
-sd4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[3].domain_suffix | join(" ")')
-sg4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[3].geosite | join(" ")' 2>/dev/null)
+sd4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[3].domain_suffix // []) | join(" ")' 2>/dev/null)
+sg4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[3].geosite // []) | join(" ")' 2>/dev/null)
 if [[ "$sd4" == "yg_kkk" && ("$sg4" == "yg_kkk" || -z "$sg4") ]]; then
 sfl4="${yellow}【$warp_s4_ip】未分流${plain}"
 else
@@ -3681,8 +3681,8 @@ fi
 sfl4="${yellow}【$warp_s4_ip】已分流：$ssd4$ssg4${plain} "
 fi
 
-sd6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[4].domain_suffix | join(" ")')
-sg6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[4].geosite | join(" ")' 2>/dev/null)
+sd6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[4].domain_suffix // []) | join(" ")' 2>/dev/null)
+sg6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[4].geosite // []) | join(" ")' 2>/dev/null)
 if [[ "$sd6" == "yg_kkk" && ("$sg6" == "yg_kkk" || -z "$sg6") ]]; then
 sfl6="${yellow}【$warp_s6_ip】未分流${plain}"
 else
@@ -3695,8 +3695,8 @@ fi
 sfl6="${yellow}【$warp_s6_ip】已分流：$ssd6$ssg6${plain} "
 fi
 
-ad4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[5].domain_suffix | join(" ")' 2>/dev/null)
-ag4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[5].geosite | join(" ")' 2>/dev/null)
+ad4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[5].domain_suffix // []) | join(" ")' 2>/dev/null)
+ag4=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[5].geosite // []) | join(" ")' 2>/dev/null)
 if [[ ("$ad4" == "yg_kkk" || -z "$ad4") && ("$ag4" == "yg_kkk" || -z "$ag4") ]]; then
 adfl4="${yellow}【$vps_ipv4】未分流${plain}" 
 else
@@ -3709,8 +3709,8 @@ fi
 adfl4="${yellow}【$vps_ipv4】已分流：$sad4$sag4${plain} "
 fi
 
-ad6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[6].domain_suffix | join(" ")' 2>/dev/null)
-ag6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '.route.rules[6].geosite | join(" ")' 2>/dev/null)
+ad6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[6].domain_suffix // []) | join(" ")' 2>/dev/null)
+ag6=$(sed 's://.*::g' /etc/s-box/sb.json | jq -r '(.route.rules[6].geosite // []) | join(" ")' 2>/dev/null)
 if [[ ("$ad6" == "yg_kkk" || -z "$ad6") && ("$ag6" == "yg_kkk" || -z "$ag6") ]]; then
 adfl6="${yellow}【$vps_ipv6】未分流${plain}" 
 else
